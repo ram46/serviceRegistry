@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --full-trace -w tests/serverSpecs",
+    "test": "mocha --full-trace -w tests/serverSpecs --watch",
     "server": "nodemon server/index.js"
   },
   "repository": {

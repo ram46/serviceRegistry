@@ -26,7 +26,6 @@ logger.info('this is test');
 module.exports = {
 
   register: function(serviceObj, cb) {
-    // services.push(serviceObj)
     Registry.create(serviceObj).then((res) => {
       logger.info('registered a new service ' + serviceObj.name)
       cb(null, res)
@@ -36,10 +35,11 @@ module.exports = {
       // tech-depth first check if it exost only then push
   },
 
-  deregister: function(serviceObj) {
+  deregister: function(serviceObj, cb) {
     Registry.deleteOne({ name: serviceObj.name }, function (err) {
-
       logger.info('deregistered the service ' + serviceObj.name)
+      if (err) cb(err, null)
+      else cb(null, 'deleted')
 
     });
   },

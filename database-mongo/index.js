@@ -4,15 +4,15 @@ const connection = mongoose.connection;
 const MONGODB_URI = process.env.DB_URI  || 'mongodb://localhost/service_registry'
 mongoose.connect(MONGODB_URI);
 
-connection.once('open', function() {
-  console.log('connected to service_registry database')
-})
+// connection.once('open', function() {
+//   console.log('connected to service_registry database')
+// })
 
 
 let serviceRegistrySchema = mongoose.Schema({
   id: Number,
   live: Boolean,
-  name: String,
+  name: {type: String, unique: true},
   address: String,
   port: Number,
   protocol: String

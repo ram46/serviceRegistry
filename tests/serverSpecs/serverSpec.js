@@ -1,36 +1,21 @@
 var expect = require('chai').expect;
 var request = require('request');
 var mongoose = require('mongoose');
+var connection = mongoose.connection;
 var request = require('request');
 
 
-// try {
-//   var config = require('../config.js')
-// }
-
-// catch(e) {
-//   var config = {
-//     DBHOST: process.env.DBHOST,
-//     DBUSER: process.env.DBUSER,
-//     DBPASS: process.env.DBPASS,
-//     DBPORT: process.env.DBPORT,
-//     DBNAME: process.env.DBNAME
-//   }
-// }
 
 
-// describe('Connection to DB', function(){
-//   var uri = `mongodb://${config.DBUSER}:${config.DBPASS}@${config.DBHOST}:${config.DBPORT}/${config.DBNAME}`
-
-//   it('Connects to db successfully', function() {
-//     mongoose.connect(uri).then(() => {
-//       var status = 'OK';
-//       expect(status).to.equal('OK')
-//     },
-//     err => { console.log(err) });
-//   });
-// });
-
+describe('Connection to DB', function() {
+  it('Connects to db successfully', function() {
+    const MONGODB_URI = process.env.DB_URI  || 'mongodb://localhost/service_registry';
+    connection.once('open', function() {
+      expect(status).to.equal('OK');
+    })
+    mongoose.connection.close()
+  })
+})
 
 
 describe('Route check', function() {
@@ -43,15 +28,25 @@ describe('Route check', function() {
     protocol: 'http'
   }
 
-  xit('registerService route works', function() {
-    request.post({url:'http://localhost:9001/registerService', form: mockObj}, function(err, httpResponse, body) {
+  var mockObj2 = {
+    live: true,
+    name: 'service-3',
+    address: '127.3.0.1',
+    port: 4003,
+    protocol: 'http'
+  }
+
+
+  it('registerService route works', function() {
+    request.post({url:'http://localhost:9001/registerService', form: {service: mockObj}}, function(err, httpResponse, body) {
       expect(httpResponse.statusCode).to.equal(200);
     });
   });
 
 
-  it('registerService route works', function() {
-    request.post({url:'http://localhost:9001/registerService', form: {service: mockObj}}, function(err, httpResponse, body) {
+
+  it('de-registerService route works', function() {
+    request.post({url:'http://localhost:9001/deRegisterService', form: {service: mockObj}}, function(err, httpResponse, body) {
       expect(httpResponse.statusCode).to.equal(200);
     });
   });

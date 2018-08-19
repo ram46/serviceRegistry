@@ -45,7 +45,12 @@ function registerService(req, res) {
 
 
 function deRegisterService(req, res) {
-  res.send('done')
+  var serviceObj = req.body.service
+
+  service.deregister(serviceObj, (err, result) => {
+    if (err) res.send('unable to de-register the service, for more details check service_error.log')
+    if (result) res.send('service is de-regitererd!')
+  })
 }
 
 

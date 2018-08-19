@@ -1,0 +1,29 @@
+{
+  "name": "serviceregistry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --full-trace -w tests/serverSpecs",
+    "server": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ele-one/serviceRegistry.git"
+  },
+  "author": "Nasa Quba & Kausar Khizra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ele-one/serviceRegistry/issues"
+  },
+  "homepage": "https://github.com/ele-one/serviceRegistry#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.9"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "request": "^2.88.0"
+  }
+}

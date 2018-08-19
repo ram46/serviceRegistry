@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var service = require('./utils.js')
 
 var app = express();
 
@@ -34,8 +35,12 @@ app.post('/heartBeat', heartBeat);
 
 
 function registerService(req, res) {
-  console.log('in registerService')
-  res.send('done')
+  var serviceObj = req.body.service
+  service.register(serviceObj, (err, result) => {
+    if (err) res.send('unable to register the service, for more details check service_error.log')
+    if (result) res.send('service is regitererd!')
+  })
+
 }
 
 

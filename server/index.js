@@ -32,13 +32,13 @@ app.get('/', (req, res) => {
 app.post('/registerService', registerService);
 app.post('/deRegisterService', deRegisterService);
 app.post('/heartBeat', heartBeat);
-
+app.get('/getMicroservices', getMicroservices)
 
 function registerService(req, res) {
   var serviceObj = req.body.service
   service.register(serviceObj, (err, result) => {
-    if (err) res.send('unable to register the service, for more details check service_error.log')
-    if (result) res.send('service is regitererd!')
+    if (err) res.send('unable to register the service, for more details check service_error.log');
+    if (result) res.send('service is regitererd!');
   })
 
 }
@@ -48,14 +48,21 @@ function deRegisterService(req, res) {
   var serviceObj = req.body.service
 
   service.deregister(serviceObj, (err, result) => {
-    if (err) res.send('unable to de-register the service, for more details check service_error.log')
-    if (result) res.send('service is de-regitererd!')
+    if (err) res.send('unable to de-register the service, for more details check service_error.log');
+    if (result) res.send('service is de-regitererd!');
   })
 }
 
 
 function heartBeat(req, res) {
   res.send('pulse')
+}
+
+function getMicroservices(res, res) {
+  services.getMicroservices((err, result) => {
+    if (err) res.send('unable to find services, for more details check service_error.log');
+    if (result) res.send(result);
+  })
 }
 
 app.listen(port, function() {

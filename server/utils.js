@@ -70,6 +70,16 @@ module.exports = {
 
     })
     .catch((err) => cb(err, null))
+  },
+
+
+  getMicroservices: function(cb) {
+    Registry.find({}).then((result) => {
+      cb(null, result)
+    })
+    .catch((err) => {
+      cb(err, null)
+    })
   }
 
 }

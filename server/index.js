@@ -1,8 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var service = require('./utils.js')
-
 var app = express();
+
+
 
 // app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
@@ -31,14 +32,17 @@ app.get('/', (req, res) => {
 
 app.post('/registerService', registerService);
 app.post('/deRegisterService', deRegisterService);
-app.post('/heartBeat', heartBeat);
-app.get('/getMicroservices', getMicroservices)
+app.get('/getMicroservices', getMicroservices);
+
+
+setInterval(service.monitorHeartbeat, 360000);
 
 function registerService(req, res) {
   var serviceObj = req.body.service
   service.register(serviceObj, (err, result) => {
     if (err) res.send('unable to register the service, for more details check service_error.log');
     if (result) res.send('service is regitererd!');
+    // setTimeout(service.monitorHeartbeat, 60000);
   })
 
 }
@@ -50,13 +54,10 @@ function deRegisterService(req, res) {
   service.deregister(serviceObj, (err, result) => {
     if (err) res.send('unable to de-register the service, for more details check service_error.log');
     if (result) res.send('service is de-regitererd!');
+
   })
 }
 
-
-function heartBeat(req, res) {
-  res.send('pulse')
-}
 
 function getMicroservices(res, res) {
   service.getMicroservices((err, result) => {
@@ -64,6 +65,8 @@ function getMicroservices(res, res) {
     if (result) res.send(result);
   })
 }
+
+
 
 app.listen(port, function() {
   console.log(`listening on port  ${port}`);

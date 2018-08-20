@@ -1,5 +1,6 @@
 var Registry= require('../database-mongo').Registry
 var winston = require('winston')
+var request = require('request');
 
 const { createLogger, format} = require('winston');
 
@@ -79,7 +80,45 @@ module.exports = {
     .catch((err) => {
       cb(err, null)
     })
-  }
+  },
+
+
+  updateLiveStatus: function(ip, port, serviceName, isLive) {
+
+    var query = {address: ip, port: port, name: serviceName}
+    Registry.findOneAndUpdate(query, {live: isLive}, (err, raw) => {
+      console.log('raw is', raw)
+    })
+  },
+
+
+
+  monitorHeartbeat: function() {
+
+    module.exports.getMicroservices((err, result) => {
+
+      if (!result || result.length === 0) {
+        console.log('no service found in registry database');
+        logger.info('no service found in registry database');
+      }
+
+      for (var i = 0; i < result.length; i++) {
+        let [serviceIP, servicePort, serviceName] = [result[i].address, result[i].port, result[i].name];
+        let addr = `http://${serviceIP}:${servicePort}/heartbeat`
+
+        request(addr, function (error, response, body) {
+          if (error) { // save 'live = false' in db for the record
+            module.exports.updateLiveStatus(serviceIP, servicePort, serviceName, false)
+            logger.error('service down ', serviceName)
+          }
+          else if (response.body === 'pulse') { // save 'live = true' for the record
+            module.exports.updateLiveStatus(serviceIP, servicePort, serviceName, true)
+          }
+        });
+      }
+    })
+}
+
 }
 
 

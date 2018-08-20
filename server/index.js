@@ -31,8 +31,8 @@ app.get('/', (req, res) => {
 
 app.post('/registerService', registerService);
 app.post('/deRegisterService', deRegisterService);
-app.post('/heartBeat', heartBeat);
-app.get('/getMicroservices', getMicroservices)
+app.get('/getMicroservices', getMicroservices);
+app.get('/checkHearbeat', checkHearbeat);
 
 function registerService(req, res) {
   var serviceObj = req.body.service
@@ -54,6 +54,7 @@ function deRegisterService(req, res) {
 }
 
 
+
 function heartBeat(req, res) {
   res.send('pulse')
 }
@@ -64,6 +65,8 @@ function getMicroservices(res, res) {
     if (result) res.send(result);
   })
 }
+
+
 
 app.listen(port, function() {
   console.log(`listening on port  ${port}`);

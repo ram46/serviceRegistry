@@ -1,22 +1,6 @@
 var Registry= require('./index.js').Registry
 var service = require('../server/utils.js')
 
-var obj2a = {
-    live: true,
-    name: 'crudService-1',
-    address: '127.0.0.1',
-    port: 5001,
-    protocol: 'http'
-  }
-
-
-var obj2b = {
-    live: true,
-    name: 'crudService-2',
-    address: '127.0.0.1',
-    port: 5001,
-    protocol: 'http'
-  }
 
 
 var obj1a = {
@@ -33,6 +17,25 @@ var obj1b = {
     name: 'searchService-2',
     address: '127.0.0.1',
     port: 5002,
+    protocol: 'http'
+  }
+
+
+
+var obj2a = {
+    live: true,
+    name: 'crudService-1',
+    address: '127.0.0.1',
+    port: 5001,
+    protocol: 'http'
+  }
+
+
+var obj2b = {
+    live: true,
+    name: 'crudService-2',
+    address: '127.0.0.1',
+    port: 5001,
     protocol: 'http'
   }
 

@@ -83,50 +83,17 @@ module.exports = {
 }
 
 
+///// Tests - can be deleted in end
+
+// var obj1 = {
+//     live: true,
+//     name: 'crudService-2',
+//     address: '127.0.0.1',
+//     port: 5001,
+//     protocol: 'http'
+//   }
 
 
-var obj1 = {
-    live: true,
-    name: 'searchService-1',
-    address: '127.0.0.1',
-    port: 5002,
-    protocol: 'http'
-  }
-
-
-var obj2 = {
-    live: true,
-    name: 'searchService-2',
-    address: '127.0.0.1',
-    port: 5002,
-    protocol: 'http'
-  }
-
-
-
-var obj3 = {
-    live: true,
-    name: 'crudService-1',
-    address: '127.0.0.1',
-    port: 5001,
-    protocol: 'http'
-  }
-
-
-var obj4 = {
-    live: true,
-    name: 'crudService-2',
-    address: '127.0.0.1',
-    port: 5001,
-    protocol: 'http'
-  }
-
-
-
-module.exports.register(obj1)
-module.exports.register(obj2)
-module.exports.register(obj3)
-module.exports.register(obj4)
 // module.exports.deregister(obj)
 
 // module.exports.updateServiceIfNeeded(obj, (err, res) => console.log(res))
@@ -134,3 +101,10 @@ module.exports.register(obj4)
 // module.exports.getMicroservices((err, res) => {
 //   console.log(res)
 // })
+
+
+// module.exports.register(obj1, (err, res) => {
+//   console.log(res)
+// })
+
+

@@ -67,7 +67,6 @@ module.exports = {
           }
         })
       }
-
     })
     .catch((err) => cb(err, null))
   },
@@ -81,26 +80,31 @@ module.exports = {
       cb(err, null)
     })
   }
-
 }
 
 
+///// Tests - can be deleted in end
 
-
-// var obj = {
+// var obj1 = {
 //     live: true,
-//     name: 'service-2',
-//     address: '127.3.0.1',
-//     port: 4003,
+//     name: 'crudService-2',
+//     address: '127.0.0.1',
+//     port: 5001,
 //     protocol: 'http'
 //   }
 
 
-
-// module.exports.register(obj)
 // module.exports.deregister(obj)
 
-
 // module.exports.updateServiceIfNeeded(obj, (err, res) => console.log(res))
+
+// module.exports.getMicroservices((err, res) => {
+//   console.log(res)
+// })
+
+
+// module.exports.register(obj1, (err, res) => {
+//   console.log(res)
+// })
 
 

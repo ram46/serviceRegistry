@@ -59,7 +59,7 @@ function heartBeat(req, res) {
 }
 
 function getMicroservices(res, res) {
-  services.getMicroservices((err, result) => {
+  service.getMicroservices((err, result) => {
     if (err) res.send('unable to find services, for more details check service_error.log');
     if (result) res.send(result);
   })

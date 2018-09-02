@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --full-trace -w tests/serverSpecs --watch",
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/index.js",
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",

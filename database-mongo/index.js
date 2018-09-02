@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const connection = mongoose.connection;
 
-const MONGODB_URI = process.env.DB_URI  || 'mongodb://localhost/service_registry'
+const MONGODB_URI = process.env.MONGODB_URI  || 'mongodb://localhost/service_registry'
 mongoose.connect(MONGODB_URI);
 
 // connection.once('open', function() {
